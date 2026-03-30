@@ -238,7 +238,7 @@
     </div>
     <div id="login-form">
       <div class="form-group"><label>Username</label><input type="text" id="login-user" placeholder="Enter username" /></div>
-      <div class="form-group"><label>Password</label><input type="password" id="login-pass" placeholder="Enter password" /></div>
+      <div class="form-group"><label>Password</label><div style="position:relative"><input type="password" id="login-pass" placeholder="Enter password" style="width:100%;padding:0.7rem 2.8rem 0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--ink);background:var(--paper);" /><span onclick="togglePass('login-pass',this)" style="position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none">👁️</span></div></div>
       <button class="btn-primary" id="login-btn" onclick="doLogin()">Sign In</button>
       <div class="auth-note">Demo: <b>student</b> / <b>1234</b> &nbsp;|&nbsp; Admin: <b>admin</b> / <b>admin</b></div>
     </div>
@@ -246,7 +246,7 @@
       <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" placeholder="e.g. Juan Dela Cruz" /></div>
       <div class="form-group"><label>Username</label><input type="text" id="reg-user" placeholder="Choose a username" /></div>
       <div class="form-group"><label>Email</label><input type="email" id="reg-email" placeholder="your@email.com" /></div>
-      <div class="form-group"><label>Password</label><input type="password" id="reg-pass" placeholder="Create a password" /></div>
+      <div class="form-group"><label>Password</label><div style="position:relative"><input type="password" id="reg-pass" placeholder="Create a password" style="width:100%;padding:0.7rem 2.8rem 0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--ink);background:var(--paper);" /><span onclick="togglePass('reg-pass',this)" style="position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none">👁️</span></div></div>
       <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create Account</button>
     </div>
   </div>
@@ -510,6 +510,16 @@ function showToast(msg, dur = 2500) {
 }
 
 // ════════ AUTH ════════
+function togglePass(inputId, icon) {
+  const input = document.getElementById(inputId);
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    icon.textContent = '👁️';
+  }
+}
 function switchAuthTab(tab, el) {
   document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
