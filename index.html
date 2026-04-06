@@ -245,7 +245,11 @@
     <div id="register-form" style="display:none">
       <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" placeholder="e.g. Juan Dela Cruz" /></div>
       <div class="form-group"><label>Username</label><input type="text" id="reg-user" placeholder="Choose a username" /></div>
-      <div class="form-group"><label>Email</label><input type="email" id="reg-email" placeholder="your@email.com" /></div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="your@email.com" oninput="validateEmailInput()" />
+        <span id="email-error" style="color:#c0392b; font-size:0.85rem; margin-top:0.5rem; display:none;"></span>
+      </div>
       <div class="form-group"><label>Password</label><div style="position:relative"><input type="password" id="reg-pass" placeholder="Create a password" style="width:100%;padding:0.7rem 2.8rem 0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--ink);background:var(--paper);" /><span onclick="togglePass('reg-pass',this)" style="position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none">👁️</span></div></div>
       <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create Account</button>
     </div>
@@ -525,6 +529,14 @@ function switchAuthTab(tab, el) {
   el.classList.add('active');
   document.getElementById('login-form').style.display    = tab === 'login'    ? 'block' : 'none';
   document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+  
+  // Clear email validation error when switching to register tab
+  if (tab === 'register') {
+    const emailInput = document.getElementById('reg-email');
+    const errorMsg = document.getElementById('email-error');
+    emailInput.value = '';
+    errorMsg.style.display = 'none';
+  }
 }
 
 async function doLogin() {
@@ -548,8 +560,53 @@ async function doLogin() {
   }
 }
 
+// ════════ EMAIL VALIDATION ════════
+// Regex pattern for email validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Function to validate email format
+function validateEmail(email) {
+  return emailRegex.test(email);
+}
+
+// Function called when user types in email input
+function validateEmailInput() {
+  const emailInput = document.getElementById('reg-email');
+  const errorMsg = document.getElementById('email-error');
+  const email = emailInput.value.trim();
+
+  if (email === '') {
+    // Empty email - hide error
+    errorMsg.style.display = 'none';
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    // Invalid email - show error message only
+    errorMsg.textContent = '⚠️ Please enter a valid email address.';
+    errorMsg.style.display = 'block';
+  } else {
+    // Valid email - hide error
+    errorMsg.style.display = 'none';
+  }
+}
+
 async function doRegister() {
   const btn = document.getElementById('reg-btn');
+  const emailInput = document.getElementById('reg-email');
+  const email = emailInput.value.trim();
+
+  // Validate email before submitting
+  if (!email) {
+    showToast('❌ Please enter your email address.');
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    showToast('⚠️ Please enter a valid email address (e.g., user@example.com).');
+    return;
+  }
+
   btn.disabled = true; btn.textContent = 'Creating account…';
   try {
     await api('auth.php?action=register', 'POST', {
