@@ -2,6 +2,7 @@
 // ============================================================
 //  api/stats.php
 //  GET /api/stats.php   – dashboard stats for admin overview
+// test if git is working
 // ============================================================
 require_once __DIR__ . '/config.php';
 

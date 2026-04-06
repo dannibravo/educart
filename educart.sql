@@ -1,6 +1,7 @@
 -- ============================================================
 --  EduCart Database Schema
 --  Import this in phpMyAdmin: database name = educart_db
+-- test if git is working
 -- ============================================================
 
 CREATE DATABASE IF NOT EXISTS educart_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

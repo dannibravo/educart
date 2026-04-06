@@ -2,6 +2,7 @@
 // ============================================================
 //  config.php  –  Database connection + shared helpers
 //  Edit DB_HOST / DB_NAME / DB_USER / DB_PASS to match yours
+// test if git is working
 // ============================================================
 
 define('DB_HOST', 'localhost');

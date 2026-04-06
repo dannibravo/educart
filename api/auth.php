@@ -3,6 +3,7 @@
 //  api/auth.php
 //  POST /api/auth.php?action=login
 //  POST /api/auth.php?action=register
+// test if git is working
 // ============================================================
 require_once __DIR__ . '/config.php';
 

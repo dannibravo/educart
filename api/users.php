@@ -3,6 +3,7 @@
 //  api/users.php
 //  GET /api/users.php        – list all users (admin only)
 //  GET /api/users.php?id=3   – single user
+//test if git is working
 // ============================================================
 require_once __DIR__ . '/config.php';
 

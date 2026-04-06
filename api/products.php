@@ -6,6 +6,7 @@
 //  POST   /api/products.php              – add product (admin)
 //  PUT    /api/products.php?id=5         – edit product (admin)
 //  DELETE /api/products.php?id=5         – delete product (admin)
+// test if git is working
 // ============================================================
 require_once __DIR__ . '/config.php';
 

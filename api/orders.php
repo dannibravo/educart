@@ -6,6 +6,7 @@
 //  GET  /api/orders.php?id=5         – single order with items
 //  POST /api/orders.php              – place new order
 //  PUT  /api/orders.php?id=5         – update status (admin)
+// test if git is working
 // ============================================================
 require_once __DIR__ . '/config.php';
 
