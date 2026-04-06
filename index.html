@@ -1,4 +1,3 @@
-/* test if git is working */
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,24 +38,6 @@
   .nav-btn.active { background:var(--accent); }
   .cart-badge { background:var(--accent); color:#fff; font-size:0.72rem; font-weight:700; border-radius:50%; width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; margin-left:4px; }
   .nav-user { font-size:0.85rem; color:rgba(255,255,255,0.7); padding:0 0.5rem; }
-
-  /* AUTH */
-  #auth-page { background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%); display:flex; align-items:center; justify-content:center; min-height:100vh; }
-  .auth-card { background:var(--white); border-radius:20px; padding:2.8rem 2.5rem; width:100%; max-width:400px; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-  .auth-logo { font-family:'Fraunces',serif; font-size:2.2rem; font-weight:900; text-align:center; margin-bottom:0.2rem; }
-  .auth-logo span { color:var(--accent); }
-  .auth-sub { text-align:center; color:var(--muted); font-size:0.9rem; margin-bottom:2rem; }
-  .auth-tabs { display:flex; gap:0; margin-bottom:1.8rem; border:1.5px solid var(--border); border-radius:8px; overflow:hidden; }
-  .auth-tab { flex:1; padding:0.6rem; text-align:center; cursor:pointer; font-size:0.9rem; font-weight:500; transition:all 0.2s; color:var(--muted); }
-  .auth-tab.active { background:var(--ink); color:#fff; }
-  .form-group { margin-bottom:1.1rem; }
-  .form-group label { display:block; font-size:0.82rem; font-weight:600; color:var(--muted); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.05em; }
-  .form-group input { width:100%; padding:0.7rem 1rem; border:1.5px solid var(--border); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--ink); transition:border-color 0.2s; background:var(--paper); }
-  .form-group input:focus { outline:none; border-color:var(--accent); background:#fff; }
-  .btn-primary { width:100%; padding:0.85rem; background:var(--accent); color:#fff; border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:1rem; font-weight:600; cursor:pointer; transition:background 0.2s; margin-top:0.5rem; }
-  .btn-primary:hover { background:#c4511a; }
-  .btn-primary:disabled { background:var(--border); cursor:not-allowed; }
-  .auth-note { text-align:center; font-size:0.8rem; color:var(--muted); margin-top:1.2rem; }
 
   /* SHOP */
   .shop-hero { background:linear-gradient(120deg,var(--ink) 0%,#1e3a5f 100%); color:#fff; padding:3rem 2.5rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; }
@@ -121,6 +102,10 @@
   @media(max-width:768px){ .checkout-grid { grid-template-columns:1fr; } }
   .checkout-form-card,.order-summary-card { background:#fff; border-radius:14px; border:1.5px solid var(--border); padding:1.8rem; }
   .checkout-form-card h3,.order-summary-card h3 { font-family:'Fraunces',serif; font-size:1.1rem; font-weight:700; margin-bottom:1.2rem; padding-bottom:0.8rem; border-bottom:1.5px solid var(--border); }
+  .form-group { margin-bottom:1.1rem; }
+  .form-group label { display:block; font-size:0.82rem; font-weight:600; color:var(--muted); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.05em; }
+  .form-group input { width:100%; padding:0.7rem 1rem; border:1.5px solid var(--border); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.95rem; color:var(--ink); transition:border-color 0.2s; background:var(--paper); }
+  .form-group input:focus { outline:none; border-color:var(--accent); background:#fff; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
   .summary-item { display:flex; justify-content:space-between; padding:0.6rem 0; border-bottom:1px solid var(--border); font-size:0.9rem; }
   .summary-total { display:flex; justify-content:space-between; font-weight:700; font-size:1.05rem; margin-top:0.8rem; padding-top:0.8rem; border-top:2px solid var(--ink); }
@@ -227,39 +212,8 @@
 </head>
 <body>
 
-<!-- ══ AUTH PAGE ══ -->
-<div id="auth-page" class="page active">
-  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);">
-  <div class="auth-card">
-    <div class="auth-logo">Edu<span>Cart</span></div>
-    <div class="auth-sub">School Supplies Online Store</div>
-    <div class="auth-tabs">
-      <div class="auth-tab active" onclick="switchAuthTab('login',this)">Login</div>
-      <div class="auth-tab" onclick="switchAuthTab('register',this)">Register</div>
-    </div>
-    <div id="login-form">
-      <div class="form-group"><label>Username</label><input type="text" id="login-user" placeholder="Enter username" /></div>
-      <div class="form-group"><label>Password</label><div style="position:relative"><input type="password" id="login-pass" placeholder="Enter password" style="width:100%;padding:0.7rem 2.8rem 0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--ink);background:var(--paper);" /><span onclick="togglePass('login-pass',this)" style="position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none">👁️</span></div></div>
-      <button class="btn-primary" id="login-btn" onclick="doLogin()">Sign In</button>
-      <div class="auth-note">Demo: <b>student</b> / <b>1234</b> &nbsp;|&nbsp; Admin: <b>admin</b> / <b>admin</b></div>
-    </div>
-    <div id="register-form" style="display:none">
-      <div class="form-group"><label>Full Name</label><input type="text" id="reg-name" placeholder="e.g. Juan Dela Cruz" /></div>
-      <div class="form-group"><label>Username</label><input type="text" id="reg-user" placeholder="Choose a username" /></div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="reg-email" placeholder="your@email.com" oninput="validateEmailInput()" />
-        <span id="email-error" style="color:#c0392b; font-size:0.85rem; margin-top:0.5rem; display:none;"></span>
-      </div>
-      <div class="form-group"><label>Password</label><div style="position:relative"><input type="password" id="reg-pass" placeholder="Create a password" style="width:100%;padding:0.7rem 2.8rem 0.7rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--ink);background:var(--paper);" /><span onclick="togglePass('reg-pass',this)" style="position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:1rem;user-select:none">👁️</span></div></div>
-      <button class="btn-primary" id="reg-btn" onclick="doRegister()">Create Account</button>
-    </div>
-  </div>
-  </div>
-</div>
-
 <!-- ══ SHOP PAGE ══ -->
-<div id="shop-page" class="page">
+<div id="shop-page" class="page active">
   <nav>
     <div class="nav-logo" onclick="showPage('shop')">Edu<span>Cart</span></div>
     <div class="nav-links">
@@ -484,24 +438,40 @@
 
 <script>
 // ════════════════════════════════════════════════════════════
-//  CONFIG — change this to your local server path
+//  CONFIG
 // ════════════════════════════════════════════════════════════
-const API = 'http://localhost/educart/api';  // adjust if needed
+const API = 'http://localhost/educart/api';
+
+// ════════ SESSION — read user from localStorage (set by login.html) ════════
+let currentUser = null;
+
+(function initSession() {
+  const stored = localStorage.getItem('educart_user');
+  if (!stored) {
+    // Not logged in — redirect back to login page
+    window.location.href = 'login.html';
+    return;
+  }
+  currentUser = JSON.parse(stored);
+
+  // Populate nav
+  document.getElementById('nav-username').textContent = `Hi, ${currentUser.name.split(' ')[0]}`;
+  document.getElementById('admin-nav-btn').style.display = currentUser.role === 'admin' ? 'inline-block' : 'none';
+
+  // Load products and show shop
+  loadProducts();
+})();
 
 // ════════ STATE ════════
-let products     = [];
-let cart         = [];
-let currentUser  = null;
-let selectedCat  = 'All';
+let products    = [];
+let cart        = [];
+let selectedCat = 'All';
 
 // ════════ UTILS ════════
 async function api(endpoint, method = 'GET', body = null) {
-  const opts = {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-  };
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
   if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(`${API}/${endpoint}`, opts);
+  const res  = await fetch(`${API}/${endpoint}`, opts);
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Request failed');
   return data;
@@ -514,121 +484,10 @@ function showToast(msg, dur = 2500) {
   setTimeout(() => t.classList.remove('show'), dur);
 }
 
-// ════════ AUTH ════════
-function togglePass(inputId, icon) {
-  const input = document.getElementById(inputId);
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.textContent = '🙈';
-  } else {
-    input.type = 'password';
-    icon.textContent = '👁️';
-  }
-}
-function switchAuthTab(tab, el) {
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('login-form').style.display    = tab === 'login'    ? 'block' : 'none';
-  document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
-  
-  // Clear email validation error when switching to register tab
-  if (tab === 'register') {
-    const emailInput = document.getElementById('reg-email');
-    const errorMsg = document.getElementById('email-error');
-    emailInput.value = '';
-    errorMsg.style.display = 'none';
-  }
-}
-
-async function doLogin() {
-  const btn = document.getElementById('login-btn');
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  try {
-    const res = await api('auth.php?action=login', 'POST', {
-      username: document.getElementById('login-user').value.trim(),
-      password: document.getElementById('login-pass').value,
-    });
-    currentUser = res.user;
-    document.getElementById('nav-username').textContent = `Hi, ${res.user.name.split(' ')[0]}`;
-    document.getElementById('admin-nav-btn').style.display = res.user.role === 'admin' ? 'inline-block' : 'none';
-    await loadProducts();
-    showPage('shop');
-    showToast(`✅ Welcome back, ${res.user.name.split(' ')[0]}!`);
-  } catch (e) {
-    showToast('❌ ' + e.message);
-  } finally {
-    btn.disabled = false; btn.textContent = 'Sign In';
-  }
-}
-
-// ════════ EMAIL VALIDATION ════════
-// Regex pattern for email validation
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// Function to validate email format
-function validateEmail(email) {
-  return emailRegex.test(email);
-}
-
-// Function called when user types in email input
-function validateEmailInput() {
-  const emailInput = document.getElementById('reg-email');
-  const errorMsg = document.getElementById('email-error');
-  const email = emailInput.value.trim();
-
-  if (email === '') {
-    // Empty email - hide error
-    errorMsg.style.display = 'none';
-    return;
-  }
-
-  if (!validateEmail(email)) {
-    // Invalid email - show error message only
-    errorMsg.textContent = '⚠️ Please enter a valid email address.';
-    errorMsg.style.display = 'block';
-  } else {
-    // Valid email - hide error
-    errorMsg.style.display = 'none';
-  }
-}
-
-async function doRegister() {
-  const btn = document.getElementById('reg-btn');
-  const emailInput = document.getElementById('reg-email');
-  const email = emailInput.value.trim();
-
-  // Validate email before submitting
-  if (!email) {
-    showToast('❌ Please enter your email address.');
-    return;
-  }
-
-  if (!validateEmail(email)) {
-    showToast('⚠️ Please enter a valid email address (e.g., user@example.com).');
-    return;
-  }
-
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  try {
-    await api('auth.php?action=register', 'POST', {
-      name:     document.getElementById('reg-name').value.trim(),
-      username: document.getElementById('reg-user').value.trim(),
-      email:    document.getElementById('reg-email').value.trim(),
-      password: document.getElementById('reg-pass').value,
-    });
-    showToast('✅ Account created! Please login.');
-    switchAuthTab('login', document.querySelectorAll('.auth-tab')[0]);
-  } catch (e) {
-    showToast('❌ ' + e.message);
-  } finally {
-    btn.disabled = false; btn.textContent = 'Create Account';
-  }
-}
-
+// ════════ LOGOUT ════════
 function doLogout() {
-  currentUser = null; cart = []; products = [];
-  updateCartBadge();
-  showPage('auth');
+  localStorage.removeItem('educart_user');
+  window.location.href = 'login.html';
 }
 
 // ════════ PAGES ════════
@@ -758,7 +617,7 @@ function changeQty(pid, delta) {
   const prod = products.find(p => parseInt(p.id) === pid);
   if (!item) return;
   item.qty += delta;
-  if (item.qty <= 0)                    { cart = cart.filter(c => c.id !== pid); }
+  if (item.qty <= 0)                        { cart = cart.filter(c => c.id !== pid); }
   else if (item.qty > parseInt(prod.stock)) { item.qty = parseInt(prod.stock); showToast('⚠️ Max stock reached'); }
   updateCartBadge();
   renderCartItems();
@@ -810,10 +669,7 @@ async function placeOrder() {
       payment:  document.getElementById('co-payment').value,
       items:    cart.map(c => ({ id: c.id, qty: c.qty })),
     });
-
-    // Refresh local stock
     await loadProducts();
-
     document.getElementById('order-id-display').textContent = 'Order ' + res.order_code;
     cart = [];
     updateCartBadge();
@@ -841,7 +697,6 @@ async function renderOrderHistory() {
         </div>`;
       return;
     }
-
     container.innerHTML = orders.map(o => {
       const statusClass = o.status.toLowerCase();
       const date = new Date(o.created_at).toLocaleDateString('en-PH', { month:'long', day:'numeric', year:'numeric' });
@@ -875,20 +730,18 @@ async function renderOrderHistory() {
 }
 
 async function toggleOrderItems(oid) {
-  const card    = document.getElementById(`ohcard-${oid}`);
-  const body    = document.getElementById(`ohi-${oid}`);
-  const isOpen  = body.style.display !== 'none';
+  const card   = document.getElementById(`ohcard-${oid}`);
+  const body   = document.getElementById(`ohi-${oid}`);
+  const isOpen = body.style.display !== 'none';
 
-  // Close all others
   document.querySelectorAll('.order-items-list').forEach(el => el.style.display = 'none');
   document.querySelectorAll('.order-history-header').forEach(el => el.classList.remove('expanded'));
 
-  if (isOpen) return; // clicked same one — just close
+  if (isOpen) return;
 
   body.style.display = 'block';
   card.querySelector('.order-history-header').classList.add('expanded');
 
-  // Load items if not already loaded
   if (body.dataset.loaded) return;
   try {
     const order = await api(`orders.php?id=${oid}`);
@@ -949,7 +802,7 @@ async function renderOverview() {
 async function renderAdminProducts() {
   try {
     const prods = await api('products.php');
-    products = prods; // keep in sync
+    products = prods;
     document.getElementById('prod-count').textContent = prods.length + ' products';
     document.getElementById('admin-prod-body').innerHTML = prods.map(p => {
       const stock = parseInt(p.stock);
@@ -1002,8 +855,8 @@ function editProduct(pid) {
 }
 
 async function updateProduct() {
-  const pid   = parseInt(document.getElementById('edit-prod-id').value);
-  const btn   = document.getElementById('save-edit-btn');
+  const pid = parseInt(document.getElementById('edit-prod-id').value);
+  const btn = document.getElementById('save-edit-btn');
   btn.disabled = true; btn.textContent = 'Saving…';
   try {
     await api(`products.php?id=${pid}`, 'PUT', {
